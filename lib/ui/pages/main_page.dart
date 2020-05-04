@@ -14,6 +14,7 @@ class _MainPageState extends State<MainPage> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             BlocBuilder<UserBloc, UserState>(
               builder: (context, state) => state is UserLoaded
