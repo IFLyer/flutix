@@ -21,3 +21,8 @@ TextStyle whiteNumberFont = GoogleFonts.openSans()
 TextStyle yellowNumberFont = GoogleFonts.openSans()
     .copyWith(color: accentColor2);
 
+FontWeight mediumFontWeight = FontWeight.w500;
+FontWeight regularFontWeight = FontWeight.w400;
+FontWeight lightFontWeight = FontWeight.w300;
+
+

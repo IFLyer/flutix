@@ -18,13 +18,16 @@ class MyApp extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => PageBloc()),
-            BlocProvider(create: (context) => UserBloc())
+            BlocProvider(create: (context) => UserBloc()),
+            BlocProvider(create: (context) => ThemeBloc())
           ],
-          child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: ThemeData(),
-              home: Wrapper()),
+          child: BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (_, themestate) => MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Demo',
+                theme: themestate.themeData,
+                home: Wrapper()),
+          ),
         ));
   }
 }
