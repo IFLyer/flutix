@@ -16,12 +16,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> mapEventToState(
     UserEvent event,
   ) async* {
-    if(event is LoadUser){
+    if (event is LoadUser) {
       User user = await UserServices.getUser(event.id);
 
-      yield(UserLoaded(user));
-    }else if(event is SignOutUser){
+      yield (UserLoaded(user));
+    } else if (event is SignOutUser) {
       yield UserInitial();
+    } else if (event is UpdateDataUser) {
+      User updatedUser = (state as UserLoaded)
+          .user
+          .copyWith(name: event.name, profilePicture: event.profileImage);
+      await UserServices.updateUser(updatedUser);
+      yield UserLoaded(updatedUser);
     }
   }
 }

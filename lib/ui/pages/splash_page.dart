@@ -41,7 +41,9 @@ class SplashPage extends StatelessWidget {
                     style: whiteTextFont.copyWith(fontSize: 16),
                   ),
                   color: mainColor,
-                  onPressed: () {}),
+                  onPressed: () {
+                    context.bloc<PageBloc>().add(GoToSignUpPage(RegistrationData()));
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

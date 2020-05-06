@@ -3,8 +3,8 @@ part of 'user_bloc.dart';
 abstract class UserEvent extends Equatable {
   const UserEvent();
 }
-class LoadUser extends UserEvent {
 
+class LoadUser extends UserEvent {
   final String id;
 
   LoadUser(this.id);
@@ -12,7 +12,16 @@ class LoadUser extends UserEvent {
   @override
   List<Object> get props => [id];
 }
+
 class SignOutUser extends UserEvent {
   @override
   List<Object> get props => [];
+}
+
+class UpdateDataUser extends UserEvent {
+  final String name;
+  final String profileImage;
+  UpdateDataUser({this.name, this.profileImage});
+  @override
+  List<Object> get props => [name, profileImage];
 }

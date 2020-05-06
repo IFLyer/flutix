@@ -15,6 +15,16 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
           child: BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
+              if (state is UserLoaded) {
+                if (imageFileToUpload != null) {
+                  uploadImage(imageFileToUpload).then((value) {
+                    imageFileToUpload = null;
+                    context
+                        .bloc<UserBloc>()
+                        .add(UpdateDataUser(profileImage: value));
+                  });
+                }
+              }
               return state is UserLoaded
                   ? Row(
                       children: <Widget>[
@@ -26,7 +36,7 @@ class MoviePage extends StatelessWidget {
                           ),
                           child: Stack(
                             children: <Widget>[
-                              SpinKitCircle(
+                              SpinKitFadingCircle(
                                 color: accentColor2,
                                 size: 50,
                               ),
@@ -63,7 +73,9 @@ class MoviePage extends StatelessWidget {
                             ),
                             Text(
                               NumberFormat.currency(
-                                      locale: "id_ID", decimalDigits: 0, symbol: "IDR ")
+                                      locale: "id_ID",
+                                      decimalDigits: 0,
+                                      symbol: "IDR ")
                                   .format(state.user.balance),
                               style: yellowNumberFont.copyWith(
                                   fontSize: 14, fontWeight: regularFontWeight),
@@ -72,8 +84,9 @@ class MoviePage extends StatelessWidget {
                         )
                       ],
                     )
-                  : SpinKitCircle(
+                  : SpinKitFadingCircle(
                       color: accentColor2,
+                      size: 50,
                     );
             },
           ),
