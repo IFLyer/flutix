@@ -90,7 +90,119 @@ class MoviePage extends StatelessWidget {
                     );
             },
           ),
-        )
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Now Playing",
+            style: blackTextFont.copyWith(fontSize: 16),
+          ),
+        ),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(
+            builder: (context, state) {
+              if (state is MovieLoaded) {
+                List<Movie> movies = state.movies.sublist(0, 10);
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: movies.length,
+                  itemBuilder: (_, index) => Padding(
+                    padding: EdgeInsets.only(
+                        left: (index == 0) ? defaultMargin : 0,
+                        right:
+                            (index == movies.length - 1) ? defaultMargin : 16),
+                    child: MovieBanner(
+                      movie: movies[index],
+                    ),
+                  ),
+                );
+              }
+              return SpinKitFadingCircle(
+                color: mainColor,
+                size: 50,
+              );
+            },
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Browse Movie",
+            style: blackTextFont.copyWith(fontSize: 16),
+          ),
+        ),
+        BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            if (state is UserLoaded) {
+              return Container(
+                padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                height: 68,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: state.user.selectedGenres
+                      .map((e) => BrowseButton(name: e))
+                      .toList(),
+                ),
+              );
+            }
+            return SpinKitFadingCircle(
+              color: mainColor,
+              size: 50,
+            );
+          },
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Coming Soon",
+            style: blackTextFont.copyWith(fontSize: 16),
+          ),
+        ),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(
+            builder: (context, state) {
+              if (state is MovieLoaded) {
+                List<Movie> movies = state.movies.sublist(10);
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: movies.length,
+                  itemBuilder: (_, index) => Padding(
+                    padding: EdgeInsets.only(
+                        left: (index == 0) ? defaultMargin : 0,
+                        right:
+                            (index == movies.length - 1) ? defaultMargin : 16),
+                    child: ComingSoonCard(
+                      movie: movies[index],
+                    ),
+                  ),
+                );
+              }
+              return SpinKitFadingCircle(
+                color: mainColor,
+                size: 50,
+              );
+            },
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Get Lucky Day",
+            style: blackTextFont.copyWith(fontSize: 16),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: Column(
+            children: promoDummies.map((e) => Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: PromoCard(promo: e),
+            )).toList(),
+          ),
+        ),
+        SizedBox(height: 88)
       ],
     );
   }
