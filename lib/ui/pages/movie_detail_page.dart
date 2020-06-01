@@ -21,7 +21,7 @@ class MovieDetailPage extends StatelessWidget {
             ),
             SafeArea(
               child: Container(
-                color: Color(0xFFF6F7F9),
+                color: Colors.white,
               ),
             ),
             FutureBuilder(
@@ -78,7 +78,7 @@ class MovieDetailPage extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 16),
@@ -179,7 +179,10 @@ class MovieDetailPage extends StatelessWidget {
                                         fontWeight: mediumFontWeight,
                                         fontSize: 16),
                                   ),
-                                  onPressed: () {}),
+                                  onPressed: () {
+                                    context.bloc<PageBloc>().add(
+                                        GoToSelectSchedulePage(movieDetail));
+                                  }),
                             ),
                             SizedBox(height: defaultMargin)
                           ],

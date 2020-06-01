@@ -16,13 +16,13 @@ TextStyle purpleTextFont = GoogleFonts.raleway()
 TextStyle greyTextFont = GoogleFonts.raleway()
     .copyWith(color: accentColor3, fontWeight: FontWeight.w500);
 
-TextStyle whiteNumberFont = GoogleFonts.openSans()
-    .copyWith(color: Colors.white);
-TextStyle yellowNumberFont = GoogleFonts.openSans()
-    .copyWith(color: accentColor2);
+TextStyle whiteNumberFont =
+    GoogleFonts.openSans().copyWith(color: Colors.white);
+TextStyle yellowNumberFont =
+    GoogleFonts.openSans().copyWith(color: accentColor2);
+TextStyle blackNumberFont =
+    GoogleFonts.openSans().copyWith(color: Colors.black);
 
 FontWeight mediumFontWeight = FontWeight.w500;
 FontWeight regularFontWeight = FontWeight.w400;
 FontWeight lightFontWeight = FontWeight.w300;
-
-
