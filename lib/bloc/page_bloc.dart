@@ -21,12 +21,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnLoginPage();
     } else if (event is GoToMainPage) {
       yield OnMainPage();
-    } else if(event is GoToSignUpPage){
+    } else if (event is GoToSignUpPage) {
       yield OnSignUpPage(event.registrationData);
-    }else if(event is GoToPreferencePage){
+    } else if (event is GoToPreferencePage) {
       yield OnPreferencePage(event.registrationData);
-    }else if(event is GoToAccountConfirmationPage){
+    } else if (event is GoToAccountConfirmationPage) {
       yield OnAccountConfirmationPage(event.registrationData);
+    } else if (event is GoToMovieDetailPage) {
+      yield OnMovieDetailPage(event.movie);
     }
   }
 }

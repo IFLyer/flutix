@@ -113,7 +113,12 @@ class MoviePage extends StatelessWidget {
                         right:
                             (index == movies.length - 1) ? defaultMargin : 16),
                     child: MovieBanner(
-                      movie: movies[index],
+                      movies[index],
+                      onTap: () {
+                        context
+                            .bloc<PageBloc>()
+                            .add(GoToMovieDetailPage(movies[index]));
+                      },
                     ),
                   ),
                 );
@@ -196,10 +201,12 @@ class MoviePage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Column(
-            children: promoDummies.map((e) => Padding(
-              padding: EdgeInsets.only(bottom: 16),
-              child: PromoCard(promo: e),
-            )).toList(),
+            children: promoDummies
+                .map((e) => Padding(
+                      padding: EdgeInsets.only(bottom: 16),
+                      child: PromoCard(promo: e),
+                    ))
+                .toList(),
           ),
         ),
         SizedBox(height: 88)
