@@ -109,19 +109,40 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                         width: 50,
                         height: 50,
                         margin: EdgeInsets.only(top: 30, bottom: 40),
-                        child: FloatingActionButton(
-                            elevation: 0,
-                            backgroundColor:
-                                isValid ? mainColor : Color(0xffe4e4e4),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: isValid ? Colors.white : Color(0xffBEBEBE),
-                            ),
-                            onPressed: isValid
-                                ? () async {
-                                    // context.bloc<PageBloc>().add(GoToPreferencePage(widget.registrationData));
-                                  }
-                                : null),
+                        child: BlocBuilder<UserBloc, UserState>(
+                          builder: (_, userstate) => FloatingActionButton(
+                              elevation: 0,
+                              backgroundColor:
+                                  isValid ? mainColor : Color(0xffe4e4e4),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color:
+                                    isValid ? Colors.white : Color(0xffBEBEBE),
+                              ),
+                              onPressed: isValid
+                                  ? () async {
+                                      context.bloc<PageBloc>().add(
+                                            GoToSelectSeatPage(
+                                              Ticket(
+                                                  widget.movieDetail,
+                                                  selectedTheater,
+                                                  DateTime(
+                                                      selectedDate.year,
+                                                      selectedDate.month,
+                                                      selectedDate.day,
+                                                      selectedTime),
+                                                  randomAlphaNumeric(12)
+                                                      .toUpperCase(),
+                                                  null,
+                                                  (userstate as UserLoaded)
+                                                      .user
+                                                      .name,
+                                                  null),
+                                            ),
+                                          );
+                                    }
+                                  : null),
+                        ),
                       ),
                     ),
                   ],

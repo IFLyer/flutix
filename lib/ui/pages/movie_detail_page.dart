@@ -82,10 +82,14 @@ class MovieDetailPage extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: 16),
-                            Text(
-                              movieDetail.title,
-                              style: blackTextFont.copyWith(
-                                  fontWeight: mediumFontWeight, fontSize: 24),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 48,
+                              child: Text(
+                                movieDetail.title,
+                                style: blackTextFont.copyWith(
+                                    fontWeight: mediumFontWeight, fontSize: 24),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             SizedBox(height: 6),
                             Text(

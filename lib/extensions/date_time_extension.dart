@@ -19,4 +19,7 @@ extension DateTimeExtension on DateTime {
         return 'Sun';
     }
   }
+
+  String get dateAndTime =>
+      "${this.shortDayName} ${this.day}, ${this.hour}:00";
 }

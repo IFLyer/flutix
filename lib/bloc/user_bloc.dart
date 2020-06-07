@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutix/bloc/blocs.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/services/services.dart';
 
@@ -28,6 +29,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           .copyWith(name: event.name, profilePicture: event.profileImage);
       await UserServices.updateUser(updatedUser);
       yield UserLoaded(updatedUser);
+    } else if (event is TopUp) {
+      if (state is UserLoaded) {
+        try {
+          User updatedUser = (state as UserLoaded).user.copyWith(
+              balance: (state as UserLoaded).user.balance + event.amount);
+          await UserServices.updateUser(updatedUser);
+          yield UserLoaded(updatedUser);
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else if (event is Purchase) {
+      if (state is UserLoaded) {
+        try {
+          User updatedUser = (state as UserLoaded).user.copyWith(
+              balance: (state as UserLoaded).user.balance - event.amount);
+          await UserServices.updateUser(updatedUser);
+          yield UserLoaded(updatedUser);
+        } catch (e) {
+          print(e);
+        }
+      }
     }
   }
 }
