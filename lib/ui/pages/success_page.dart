@@ -16,7 +16,7 @@ class SuccessPage extends StatelessWidget {
         body: FutureBuilder(
           future: ticket != null
               ? processingTicketOrder(context)
-              : processingTopUp(),
+              : processingTopUp(context),
           builder: (_, snapshot) => snapshot.connectionState ==
                   ConnectionState.done
               ? Column(
@@ -28,7 +28,7 @@ class SuccessPage extends StatelessWidget {
                       width: 150,
                       child: Image.asset(ticket != null
                           ? "assets/ticket_done.png"
-                          : "assets/top_up_done"),
+                          : "assets/top_up_done.png"),
                     ),
                     SizedBox(height: 70),
                     Text(
@@ -105,5 +105,8 @@ class SuccessPage extends StatelessWidget {
     await FlutixTransactionServices.saveTransaction(transaction);
   }
 
-  Future<void> processingTopUp() async {}
+  Future<void> processingTopUp(BuildContext context) async {
+    context.bloc<UserBloc>().add(TopUp(transaction.amount));
+    await FlutixTransactionServices.saveTransaction(transaction);
+  }
 }

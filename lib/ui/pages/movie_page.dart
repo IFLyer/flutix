@@ -40,17 +40,24 @@ class MoviePage extends StatelessWidget {
                                 color: accentColor2,
                                 size: 50,
                               ),
-                              Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image: state.user.profilePicture == ""
-                                          ? AssetImage("assets/user_pic.png")
-                                          : NetworkImage(
-                                              state.user.profilePicture),
-                                      fit: BoxFit.cover),
+                              GestureDetector(
+                                onTap: () {
+                                  context
+                                      .bloc<PageBloc>()
+                                      .add(GoToProfilePage());
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: state.user.profilePicture == ""
+                                            ? AssetImage("assets/user_pic.png")
+                                            : NetworkImage(
+                                                state.user.profilePicture),
+                                        fit: BoxFit.cover),
+                                  ),
                                 ),
                               )
                             ],

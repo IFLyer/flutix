@@ -31,11 +31,9 @@ class _MainPageState extends State<MainPage> {
             controller: pageController,
             children: <Widget>[
               MoviePage(),
-              Center(
-                child: Text("My Tickets"),
-              )
+              TicketPage(),
             ],
-            onPageChanged: (index){
+            onPageChanged: (index) {
               setState(() {
                 bottomNavBarIndex = index;
               });
@@ -58,8 +56,8 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   onPressed: () {
-                    context.bloc<UserBloc>().add(SignOutUser());
-                    AuthServices.signOut();
+                    context.bloc<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
+                    // AuthServices.signOut();
                   }),
             ),
           )
