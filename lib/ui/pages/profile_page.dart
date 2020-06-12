@@ -80,22 +80,28 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(height: 30),
                                   Column(
                                     children: [
-                                      Row(
-                                        children: <Widget>[
-                                          SizedBox(
-                                              width: 24,
-                                              height: 24,
-                                              child: Image.asset(
-                                                  "assets/edit_profile.png")),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            "Edit Profile",
-                                            style: blackTextFont.copyWith(
-                                                fontSize: 16),
-                                          )
-                                        ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          context.bloc<PageBloc>().add(
+                                              GoToEditProfilePage(state.user));
+                                        },
+                                        child: Row(
+                                          children: <Widget>[
+                                            SizedBox(
+                                                width: 24,
+                                                height: 24,
+                                                child: Image.asset(
+                                                    "assets/edit_profile.png")),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              "Edit Profile",
+                                              style: blackTextFont.copyWith(
+                                                  fontSize: 16),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(
@@ -104,22 +110,29 @@ class ProfilePage extends StatelessWidget {
                                             MediaQuery.of(context).size.width -
                                                 2 * defaultMargin),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          SizedBox(
-                                              width: 24,
-                                              height: 24,
-                                              child: Image.asset(
-                                                  "assets/my_wallet.png")),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            "My Wallet",
-                                            style: blackTextFont.copyWith(
-                                                fontSize: 16),
-                                          )
-                                        ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          context.bloc<PageBloc>().add(
+                                              GoToWalletPage(
+                                                  GoToProfilePage()));
+                                        },
+                                        child: Row(
+                                          children: <Widget>[
+                                            SizedBox(
+                                                width: 24,
+                                                height: 24,
+                                                child: Image.asset(
+                                                    "assets/my_wallet.png")),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              "My Wallet",
+                                              style: blackTextFont.copyWith(
+                                                  fontSize: 16),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(

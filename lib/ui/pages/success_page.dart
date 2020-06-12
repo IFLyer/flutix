@@ -60,7 +60,11 @@ class SuccessPage extends StatelessWidget {
                                 fontSize: 16, fontWeight: mediumFontWeight),
                           ),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(GoToMainPage());
+                            if (ticket != null) {
+                              context.bloc<PageBloc>().add(GoToMainPage(bottomNavBarIndex: 1));
+                            } else {
+                              context.bloc<PageBloc>().add(GoToMainPage());
+                            }
                           }),
                     ),
                     SizedBox(height: 20),

@@ -20,6 +20,9 @@ class OnSplashPage extends PageState {
 }
 
 class OnMainPage extends PageState {
+  final int bottomNavBarIndex;
+  final bool isExpired;
+  OnMainPage({this.bottomNavBarIndex = 0, this.isExpired = false});
   @override
   List<Object> get props => [];
 }
@@ -98,4 +101,19 @@ class OnTopUpPage extends PageState {
   OnTopUpPage(this.pageEvent);
   @override
   List<Object> get props => [pageEvent];
+}
+
+class OnWalletPage extends PageState {
+  final PageEvent pageEvent;
+  OnWalletPage(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}
+
+class OnEditProfilePage extends PageState {
+  final User user;
+  OnEditProfilePage(this.user);
+
+  @override
+  List<Object> get props => [user];
 }
